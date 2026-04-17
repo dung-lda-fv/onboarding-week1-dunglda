@@ -1,0 +1,27 @@
+name: CI/CD Pipeline
+
+# Bật workflow khi có hành động push hoặc pull request vào nhánh main
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest # Chạy trên máy ảo Ubuntu của GitHub
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4 # Lấy code từ repo về máy ảo
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run Tests
+      run: npm test

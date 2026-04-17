@@ -1,0 +1,22 @@
+{
+  "name": "onboarding-week1-dunglda",
+  "version": "1.0.0",
+  "description": "Todo app",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "jest-environment-jsdom": "^29.0.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFiles": [
+      "./storage.js",
+      "./logic.js"
+    ],
+    "testMatch": [
+      "**/spec/**/*.spec.js"
+    ]
+  }
+}
