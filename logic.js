@@ -15,6 +15,17 @@ function toggleComplete(tasks, id) {
   return tasks.map(task => task.id === id ? { ...task, completed: !task.completed } : task);
 }
 
+function filterTasks(tasks, { text = '', status = 'all', priority = 'all' } = {}) {
+  return tasks.filter(task => {
+    const matchesText = task.text.toLowerCase().includes(text.toLowerCase());
+    const matchesStatus = status === 'all' || (status === 'completed' ? task.completed : !task.completed);
+    const matchesPriority = priority === 'all' || task.priority === priority;
+    return matchesText && matchesStatus && matchesPriority;
+  });
+}
+
+window.filterTasks = filterTasks;
+
 window.addTask = addTask;
 window.editTask = editTask;
 window.deleteTask = deleteTask;

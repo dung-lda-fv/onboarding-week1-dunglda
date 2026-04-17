@@ -44,6 +44,14 @@ function setupUIHandlers() {
     M.updateTextFields();
   });
 
+  // Filter/search handler
+  document.getElementById('search').addEventListener('input', function(e) {
+    const text = e.target.value;
+    const tasks = getTasks();
+    const filtered = filterTasks(tasks, { text });
+    renderTasks(filtered);
+  });
+
   document.getElementById('task-list').addEventListener('click', function(e) {
     if (e.target.classList.contains('delete-task')) {
       const id = Number(e.target.getAttribute('data-id'));
