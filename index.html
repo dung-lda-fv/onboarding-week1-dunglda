@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do List App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h3 class="center-align">To-Do List</h3>
+    <!-- See README.md for usage instructions -->
+    <!-- Add Task Form -->
+    <form id="add-task-form" class="row">
+      <div class="input-field col s6">
+        <input id="task-text" type="text" required>
+        <label for="task-text">Task</label>
+      </div>
+      <div class="input-field col s3">
+        <input id="due-date" type="date">
+        <label for="due-date">Due Date</label>
+      </div>
+      <div class="input-field col s2">
+        <select id="priority">
+          <option value="" disabled selected>Priority</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <label for="priority">Priority</label>
+      </div>
+      <div class="input-field col s1">
+        <button class="btn waves-effect waves-light" type="submit">Add</button>
+      </div>
+    </form>
+    <!-- Filter/Search Bar -->
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="search" type="text" placeholder="Search or filter tasks">
+      </div>
+    </div>
+    <!-- Task List -->
+    <ul id="task-list" class="collection"></ul>
+    <!-- Edit Task Modal -->
+    <div id="edit-task-modal" class="modal">
+      <div class="modal-content">
+        <h5>Edit Task</h5>
+        <form id="edit-task-form">
+          <div class="input-field">
+            <input id="edit-task-text" type="text" required>
+            <label for="edit-task-text">Task</label>
+          </div>
+          <div class="input-field">
+            <input id="edit-due-date" type="date">
+            <label for="edit-due-date">Due Date</label>
+          </div>
+          <div class="input-field">
+            <select id="edit-priority">
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+            <label for="edit-priority">Priority</label>
+          </div>
+          <button class="btn waves-effect waves-light" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="storage.js"></script>
+  <script src="logic.js"></script>
+  <script src="ui.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (M && M.FormSelect) M.FormSelect.init(document.querySelectorAll('select'));
+      if (window.renderTasks && window.getTasks) renderTasks(getTasks());
+      if (window.setupUIHandlers) setupUIHandlers();
+    });
+  </script>
+</body>
+</html>
