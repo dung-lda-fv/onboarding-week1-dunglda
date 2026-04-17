@@ -1,3 +1,6 @@
 /* Main stylesheet for To-Do List App */
 body { background: #fafafa; }
 .container { margin-top: 40px; }
+.badge.low { background: #81c784 !important; }
+.badge.medium { background: #ffd54f !important; color: #333 !important; }
+.badge.high { background: #e57373 !important; }

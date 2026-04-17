@@ -9,7 +9,37 @@
 <body>
   <div class="container">
     <h3 class="center-align">To-Do List</h3>
-    <div id="app"></div>
+    <!-- Add Task Form -->
+    <form id="add-task-form" class="row">
+      <div class="input-field col s6">
+        <input id="task-text" type="text" required>
+        <label for="task-text">Task</label>
+      </div>
+      <div class="input-field col s3">
+        <input id="due-date" type="date">
+        <label for="due-date">Due Date</label>
+      </div>
+      <div class="input-field col s2">
+        <select id="priority">
+          <option value="" disabled selected>Priority</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <label for="priority">Priority</label>
+      </div>
+      <div class="input-field col s1">
+        <button class="btn waves-effect waves-light" type="submit">Add</button>
+      </div>
+    </form>
+    <!-- Filter/Search Bar -->
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="search" type="text" placeholder="Search or filter tasks">
+      </div>
+    </div>
+    <!-- Task List -->
+    <ul id="task-list" class="collection"></ul>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="logic.js"></script>
