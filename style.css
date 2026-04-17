@@ -4,3 +4,7 @@ body { background: #fafafa; }
 .badge.low { background: #81c784 !important; }
 .badge.medium { background: #ffd54f !important; color: #333 !important; }
 .badge.high { background: #e57373 !important; }
+@media (max-width: 600px) {
+  .container { margin-top: 10px; }
+  h3 { font-size: 1.5rem; }
+}
