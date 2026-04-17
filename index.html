@@ -41,6 +41,31 @@
     </div>
     <!-- Task List -->
     <ul id="task-list" class="collection"></ul>
+    <!-- Edit Task Modal -->
+    <div id="edit-task-modal" class="modal">
+      <div class="modal-content">
+        <h5>Edit Task</h5>
+        <form id="edit-task-form">
+          <div class="input-field">
+            <input id="edit-task-text" type="text" required>
+            <label for="edit-task-text">Task</label>
+          </div>
+          <div class="input-field">
+            <input id="edit-due-date" type="date">
+            <label for="edit-due-date">Due Date</label>
+          </div>
+          <div class="input-field">
+            <select id="edit-priority">
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+            <label for="edit-priority">Priority</label>
+          </div>
+          <button class="btn waves-effect waves-light" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="storage.js"></script>

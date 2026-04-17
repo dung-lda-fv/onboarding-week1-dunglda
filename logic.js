@@ -1,5 +1,12 @@
 // Adds a new task to the list and returns the updated array
 function addTask(tasks, newTask) {
+  if (!Array.isArray(tasks)) throw new Error("tasks must be an array");
+  if (!newTask || typeof newTask.text !== "string" || !newTask.text.trim()) {
+    throw new Error("Task text is required");
+  }
+  if (tasks.some(task => task.id === newTask.id)) {
+    throw new Error("Task ID must be unique");
+  }
   return [...tasks, newTask];
 }
 

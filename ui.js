@@ -8,7 +8,7 @@ function renderTasks(tasks) {
     li.innerHTML = `
       <label>
         <input type="checkbox" class="complete-task" data-id="${task.id}" ${task.completed ? 'checked' : ''} />
-        <span>${task.text}</span>
+        <span class="task-text" data-id="${task.id}">${task.text}</span>
         <span class="right">
           ${task.priority ? `<span class="badge ${task.priority}">${task.priority}</span>` : ''}
           ${task.dueDate ? `<span class="badge">${task.dueDate}</span>` : ''}
@@ -61,8 +61,41 @@ function setupUIHandlers() {
       renderTasks(updated);
     }
     if (e.target.classList.contains('edit-task')) {
-      // For brevity, editing logic can be implemented in Task 5
-      alert('Edit feature coming soon!');
+      e.preventDefault(); // prevent label from toggling checkbox, which would re-render and wipe the edit form
+      console.log('[DEBUG] Edit icon clicked for id:', e.target.getAttribute('data-id'));
+      const id = Number(e.target.getAttribute('data-id'));
+      const tasks = getTasks();
+      const task = tasks.find(t => t.id === id);
+      if (!task) return;
+      // Inline editing: replace text with input and buttons
+      const li = e.target.closest('li');
+      const textSpan = li.querySelector('.task-text');
+      const oldText = task.text;
+      textSpan.innerHTML = `<input type='text' class='edit-inline' value="${oldText}" style='width:70%'> <button class='btn-small save-inline' data-id='${id}'>Save</button> <button class='btn-small grey cancel-inline' data-id='${id}'>Cancel</button>`;
+    }
+    // Save inline handler (event delegation)
+    if (e.target.classList.contains('save-inline')) {
+      console.log('[DEBUG] Save clicked for id:', e.target.getAttribute('data-id'));
+      
+      const id = Number(e.target.getAttribute('data-id'));
+      const li = e.target.closest('li');
+      const textSpan = li.querySelector('.task-text');
+      const newText = textSpan.querySelector('.edit-inline').value;
+      const tasks = getTasks();
+      console.log('[DEBUG] Tasks before editTask:', JSON.stringify(tasks));
+      const updated = editTask(tasks, id, { text: newText });
+      console.log('[DEBUG] Tasks after editTask:', JSON.stringify(updated));
+      saveTasks(updated);
+      console.log('[DEBUG] localStorage after save:', localStorage.getItem('tasks'));
+      renderTasks(updated);
+      setTimeout(() => {
+        console.log('[DEBUG] localStorage after render:', localStorage.getItem('tasks'));
+      }, 0);
+    }
+    // Cancel inline handler (event delegation)
+    if (e.target.classList.contains('cancel-inline')) {
+      const tasks = getTasks();
+      renderTasks(tasks);
     }
   });
 
