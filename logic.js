@@ -7,7 +7,7 @@ function addTask(tasks, newTask) {
   if (tasks.some(task => task.id === newTask.id)) {
     throw new Error("Task ID must be unique");
   }
-  return [];
+  return [...tasks, newTask];
 }
 
 function editTask(tasks, id, updates) {
