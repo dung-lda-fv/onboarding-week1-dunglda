@@ -42,8 +42,15 @@
     <ul id="task-list" class="collection"></ul>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="storage.js"></script>
   <script src="logic.js"></script>
   <script src="ui.js"></script>
-  <script src="storage.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (M && M.FormSelect) M.FormSelect.init(document.querySelectorAll('select'));
+      if (window.renderTasks && window.getTasks) renderTasks(getTasks());
+      if (window.setupUIHandlers) setupUIHandlers();
+    });
+  </script>
 </body>
 </html>

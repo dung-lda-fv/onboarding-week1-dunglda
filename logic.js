@@ -3,8 +3,19 @@ function addTask(tasks, newTask) {
   return [...tasks, newTask];
 }
 
-// Make addTask available globally for Jasmine tests
-window.addTask = addTask;
+function editTask(tasks, id, updates) {
+  return tasks.map(task => task.id === id ? { ...task, ...updates } : task);
+}
 
-// Export for ES6 modules if needed
-// export { addTask };
+function deleteTask(tasks, id) {
+  return tasks.filter(task => task.id !== id);
+}
+
+function toggleComplete(tasks, id) {
+  return tasks.map(task => task.id === id ? { ...task, completed: !task.completed } : task);
+}
+
+window.addTask = addTask;
+window.editTask = editTask;
+window.deleteTask = deleteTask;
+window.toggleComplete = toggleComplete;
